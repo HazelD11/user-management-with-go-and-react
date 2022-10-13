@@ -1,15 +1,14 @@
-git package route
+package route
 
 import (
+	"github.com/AustinNick/coba-golang/injector"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
-func NewUserRoute(db *gorm.DB, router *gin.Engine) {
-	// userController := controller.NewUserController(db)
-	// userRouter := router.Group("/user")
-	// {
-	// 	userRouter.POST("/register", userController.Register)
-	// 	userRouter.POST("/login", userController.Login)
-	// }
+func NewUserRoute(db *gorm.DB, route *gin.Engine) {
+	userController := injector.InitUser(db)
+	userRoute := route.Group("/user")
+	userRoute.GET("/", userController.All)
+	userRoute.POST("/", userController.Insert)
 }

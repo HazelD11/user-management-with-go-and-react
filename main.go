@@ -5,10 +5,10 @@ import (
 	"os"
 
 	"github.com/AustinNick/coba-golang/app/config"
-	"github.com/AustinNick/coba-golang/app/routes"
+	routes "github.com/AustinNick/coba-golang/app/routes"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	cors "github.com/rs/cors"
+	cors "github.com/rs/cors/wrapper/gin"
 	"gorm.io/gorm"
 )
 
@@ -33,11 +33,12 @@ func NewRouter() *gin.Engine {
 	}
 	router := gin.Default()
 
-	if os.Getenv("GIN_MODE") == "test" {
+	if os.Getenv("GO_MODE") == "test" {
 		gin.SetMode(gin.TestMode)
 	}
 
 	routes.NewUserRoute(db, router)
 	router.Use(cors.Default())
+
 	return router
 }
