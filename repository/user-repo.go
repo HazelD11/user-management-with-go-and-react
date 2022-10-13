@@ -29,6 +29,6 @@ func (db *UserConnection) FindAll() []domain.User {
 }
 
 func (db *UserConnection) Save(user domain.User) domain.User {
-	db.con.Save(&user)
+	db.con.Create(&user)
 	return user
 }

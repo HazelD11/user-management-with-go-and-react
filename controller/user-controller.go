@@ -30,7 +30,7 @@ func NewUserController(userService service.UserService) UserController {
 
 func (ctrl *userController) All(ctx *gin.Context) {
 	var data = ctrl.userService.All()
-	webResponse := web.WebResponse{
+	webResponse := helper.WebResponse{
 		Code:   http.StatusOK,
 		Status: "Success",
 		Errors: "",
@@ -58,7 +58,7 @@ func (ctrl *userController) All(ctx *gin.Context) {
 func (ctrl *userController) Insert(ctx *gin.Context) {
 	var userCreateRequest web.UserCreateRequest
 	var errMsg string
-	if err := ctx.ShouldBindJSON(&userCreateRequest); err != nil {
+	if err := ctx.BindJSON(&userCreateRequest); err != nil {
 		return
 	}
 	data, err := ctrl.userService.Create(userCreateRequest)

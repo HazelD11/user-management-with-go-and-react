@@ -8,7 +8,7 @@ import (
 
 func NewUserRoute(db *gorm.DB, route *gin.Engine) {
 	userController := injector.InitUser(db)
-	userRoute := route.Group("/user")
+	userRoute := route.Group("api/user")
 	userRoute.GET("/", userController.All)
 	userRoute.POST("/", userController.Insert)
 }
