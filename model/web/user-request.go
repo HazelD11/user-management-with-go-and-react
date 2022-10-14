@@ -7,7 +7,7 @@ type UserCreateRequest struct {
 }
 
 type UserUpdateRequest struct {
-	ID       uint64
+	Id       uint64
 	Username string `json:"username"`
 	Email    string `json:"email"`
 	Password string `json:"password"`

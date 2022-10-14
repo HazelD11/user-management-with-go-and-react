@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/AustinNick/coba-golang/helper"
@@ -31,13 +30,8 @@ func NewUserController(userService service.UserService) UserController {
 
 func (ctrl *userController) All(ctx *gin.Context) {
 	var data = ctrl.userService.All()
-	webResponse := helper.WebResponse{
-		Code:   http.StatusOK,
-		Status: "Success",
-		Errors: "",
-		Data:   data,
-	}
-	ctx.JSON(http.StatusOK, webResponse)
+	response := helper.BuildResponse(http.StatusOK, "Success", data)
+	ctx.JSON(http.StatusOK, response)
 }
 
 // func FindById(ctx *gin.Context) {
@@ -66,14 +60,8 @@ func (ctrl *userController) Insert(ctx *gin.Context) {
 	if err != nil {
 		errMsg = "Failed to create user"
 	}
-	webResponse := web.WebResponse{
-		Code:   http.StatusOK,
-		Status: "Success",
-		Errors: errMsg,
-		Data:   data,
-	}
-	ctx.JSON(http.StatusOK, webResponse)
-	fmt.Println("ini id:", data.ID)
+	response := helper.BuildErrorResponse(http.StatusOK, "Success", errMsg, data)
+	ctx.JSON(http.StatusOK, response)
 }
 
 // func Update(ctx *gin.Context) {

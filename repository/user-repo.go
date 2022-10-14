@@ -7,7 +7,7 @@ import (
 
 type UserRepository interface {
 	FindAll() []domain.User
-	Save(u domain.User) domain.User
+	Create(u domain.User) domain.User
 	// FindById(id uint) (domain.User, error)
 	// Update(b domain.User) (domain.User, error)
 	// FindByEmail(email string) domain.User
@@ -28,7 +28,7 @@ func (db *UserConnection) FindAll() []domain.User {
 	return users
 }
 
-func (db *UserConnection) Save(user domain.User) domain.User {
-	db.con.Create(&user)
+func (db *UserConnection) Create(user domain.User) domain.User {
+	db.con.Save(&user)
 	return user
 }

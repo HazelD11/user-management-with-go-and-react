@@ -31,10 +31,10 @@ func (s *userService) All() []domain.User {
 }
 
 func (s *userService) Create(req web.UserCreateRequest) (domain.User, error) {
-	var user = domain.User{}
+	user := domain.User{}
 	err := smapping.FillStruct(&user, smapping.MapFields(&req))
 	if err != nil {
 		return user, err
 	}
-	return s.userRepository.Save(user), nil
+	return s.userRepository.Create(user), nil
 }
