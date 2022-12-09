@@ -1,3 +1,3 @@
-# coba-golang
+# tes
 
-Project sendiri ngap, buat coba golang ae
+mantep
