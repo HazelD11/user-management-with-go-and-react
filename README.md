@@ -1,3 +1,3 @@
 # tes
 
-mantepjosssssss
+mantep
